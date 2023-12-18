@@ -12,7 +12,11 @@
 # For more information about SLSA and how it improves the supply-chain, visit slsa.dev.
 
 name: SLSA Go releaser
-on: push
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
 permissions: read-all
 
 jobs:
