@@ -13,9 +13,6 @@
 
 name: SLSA Go releaser
 on: push
-  release:
-    types: [created]
-
 permissions: read-all
 
 jobs:
