@@ -1,7 +1,5 @@
 name: SLSA go releaser on Push
-on:
-  workflow_dispatch:
-  push:
+on: push
   
 permissions: read-all
 
