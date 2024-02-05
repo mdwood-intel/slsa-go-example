@@ -1,4 +1,4 @@
-name: SLSA go releaser
+name: SLSA go releaser node 20
 on:
   workflow_dispatch:
   push:
