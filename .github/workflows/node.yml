@@ -17,7 +17,7 @@ name: SLSA Node.js builder
 permissions: {}
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       directory:
         description: "Sub-directory where package.json is located. Must be under the workspace."
