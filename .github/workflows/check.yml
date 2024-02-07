@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # tag=v2.3.4
         with:
           fetch-depth: 0
+          cache: false
           
       - id: ldflags
         run: |
