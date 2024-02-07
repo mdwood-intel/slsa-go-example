@@ -3,7 +3,7 @@ on: push
 
 permissions: read-all
 
-concurrency: "e2e.container-based.workflow_dispatch.main.default.slsa3"
+concurrency: "e2e.container-based.push.main.default.slsa3"
 
 env:
   # TODO: Replace this token.
@@ -16,7 +16,6 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     # NOTE: workflows are only scheduled on the main branch.
-    if: github.event_name == 'schedule'
     permissions:
       actions: write
       contents: write
@@ -25,7 +24,7 @@ jobs:
       - run: ./.github/workflows/scripts/e2e-dispatch.sh
 
   build:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'push'
     permissions:
       id-token: write # For signing
       actions: read
@@ -41,7 +40,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     needs: [build]
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
@@ -77,7 +76,7 @@ jobs:
   if-succeeded:
     runs-on: ubuntu-latest
     needs: [build, verify]
-    if: github.event_name == 'workflow_dispatch' && needs.build.result == 'success' && needs.verify.result == 'success'
+    if: github.event_name == 'push' && needs.build.result == 'success' && needs.verify.result == 'success'
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - run: ./.github/workflows/scripts/e2e-report-success.sh
@@ -85,7 +84,7 @@ jobs:
   if-failed:
     runs-on: ubuntu-latest
     needs: [build, verify]
-    if: always() && github.event_name == 'workflow_dispatch' && (needs.build.result == 'failure' || needs.verify.result == 'failure')
+    if: always() && github.event_name == 'push' && (needs.build.result == 'failure' || needs.verify.result == 'failure')
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - run: ./.github/workflows/scripts/e2e-report-failure.sh
