@@ -46,9 +46,9 @@ defaults:
 #            Input and output argument definitions                #
 #                                                                 #
 ###################################################################
-on:
-  workflow_call:
-    inputs:
+on: push
+
+inputs:
       go-version:
         description: "The go version to use."
         required: false
