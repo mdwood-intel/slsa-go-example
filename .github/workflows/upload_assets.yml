@@ -1,9 +1,5 @@
 name: Upload Assets
-on:
-  workflow_dispatch:
-  push:
-    tags:
-      - "*"
+on: push
 
 permissions: read-all
 
