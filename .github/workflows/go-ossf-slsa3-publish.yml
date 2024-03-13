@@ -1,4 +1,4 @@
-name: SLSA go releaser
+name: SLSA go releaser tag name select
 on:
   workflow_dispatch:
   push:
