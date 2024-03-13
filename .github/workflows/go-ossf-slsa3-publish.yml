@@ -1,5 +1,6 @@
 name: SLSA go releaser tag name select
 on:
+  #select tag when using workflow_dispatch
   workflow_dispatch:
   push:
     tags:
