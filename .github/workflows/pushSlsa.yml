@@ -37,6 +37,7 @@ jobs:
     with:
       go-version: 1.17
       upload-tag-name: "${{ needs.release.outputs.tag }}"
+      upload-assets: true
       # Optional: only needed if using ldflags.
       evaluated-envs: "COMMIT_DATE:${{needs.args.outputs.commit-date}}, COMMIT:${{needs.args.outputs.commit}}, VERSION:${{needs.args.outputs.version}}, TREE_STATE:${{needs.args.outputs.tree-state}}"
 
