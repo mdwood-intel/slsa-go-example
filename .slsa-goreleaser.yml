@@ -12,6 +12,7 @@ flags:
   - -tags=netgo
 
 # The OS to compile for. `GOOS` env variable will be set to this value.
+# picks which one to use change for linux/windows
 #goos: linux
 goos: windows
 
